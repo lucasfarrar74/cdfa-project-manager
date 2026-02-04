@@ -181,6 +181,9 @@ export interface Activity {
   createdAt: string;
   updatedAt: string;
 
+  // Integration fields
+  budgetId?: string; // Link to budgeting tool
+
   // Legacy field for backward compatibility (derived from activityType)
   type?: 'trade_assistance' | 'educational';
 }
@@ -211,7 +214,8 @@ export interface TradeActivity extends Activity {
   actualLeads?: number;
   expectedSales?: number;
   reportedSales?: number;
-  meetingSchedulerProjectId?: string; // Integration with meeting-scheduler
+  meetingSchedulerProjectId?: string; // Integration with meeting-scheduler (local project ID)
+  meetingSchedulerShareId?: string;   // Integration with meeting-scheduler (cloud share ID)
 }
 
 // Legacy type alias for backward compatibility

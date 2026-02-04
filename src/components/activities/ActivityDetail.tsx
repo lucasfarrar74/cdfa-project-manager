@@ -497,6 +497,79 @@ export default function ActivityDetail({ activityId, onClose, onDelete }: Activi
               </div>
             )}
 
+            {/* Meeting Scheduler Integration - Trade Activities Only */}
+            {isTradeActivity && (
+              <div className="bg-white rounded-lg shadow p-4">
+                <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
+                  <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Meeting Scheduler
+                </h3>
+                <div className="space-y-3">
+                  {tradeActivity.meetingSchedulerShareId ? (
+                    <>
+                      <p className="text-sm text-gray-600">
+                        This activity is linked to a meeting schedule.
+                      </p>
+                      <div className="flex gap-2">
+                        <a
+                          href={`https://meeting-scheduler-pi-one.vercel.app/?share=${tradeActivity.meetingSchedulerShareId}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                        >
+                          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                          Open Meeting Schedule
+                        </a>
+                        {isEditing && (
+                          <button
+                            type="button"
+                            onClick={() => handleFieldChange('meetingSchedulerShareId', undefined)}
+                            className="px-3 py-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                          >
+                            Unlink
+                          </button>
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-sm text-gray-600">
+                        Create a meeting schedule to manage B2B meetings for this trade activity.
+                      </p>
+                      <a
+                        href={`https://meeting-scheduler-pi-one.vercel.app/?fromActivity=${activity.id}&activityName=${encodeURIComponent(activity.name)}&startDate=${activity.startDate}&endDate=${activity.endDate}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                      >
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                        Create Meeting Schedule
+                      </a>
+                      {isEditing && (
+                        <div className="mt-3 pt-3 border-t">
+                          <label className="block text-sm text-gray-600 mb-1">
+                            Or link existing schedule (Share ID)
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="Enter share ID from Meeting Scheduler"
+                            onChange={(e) => handleFieldChange('meetingSchedulerShareId', e.target.value || undefined)}
+                            className="w-full border rounded px-3 py-2 text-sm"
+                          />
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
+
             {isEducationalActivity && (
               <div className="bg-white rounded-lg shadow p-4">
                 <h3 className="font-semibold text-gray-900 mb-3">Educational Details</h3>

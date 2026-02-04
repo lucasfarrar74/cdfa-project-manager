@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { format, parseISO } from 'date-fns';
+import { useSearchParams } from 'react-router-dom';
 import { useActivities } from '../../context/ActivityContext';
 import type { AnyActivity, ActivityStatus } from '../../types';
 import ActivityDetail from './ActivityDetail';
@@ -14,10 +15,26 @@ export default function ActivityList() {
     activeActivityId,
     deleteActivity,
     archivedCount,
+    activities,
   } = useActivities();
 
   const [showFilters, setShowFilters] = useState(false);
   const { getActivityTypeInfo } = useActivities();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Handle activityId URL parameter - open specific activity
+  useEffect(() => {
+    const activityId = searchParams.get('activityId');
+    if (activityId && activities.length > 0) {
+      const activity = activities.find(a => a.id === activityId);
+      if (activity) {
+        selectActivity(activity.id);
+        // Clear the URL parameter after processing
+        searchParams.delete('activityId');
+        setSearchParams(searchParams, { replace: true });
+      }
+    }
+  }, [searchParams, activities, selectActivity, setSearchParams]);
 
   const getActivityTypeColor = (activityType: string) => {
     const typeInfo = getActivityTypeInfo(activityType);
