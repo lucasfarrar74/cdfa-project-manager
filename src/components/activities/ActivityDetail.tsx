@@ -570,6 +570,77 @@ export default function ActivityDetail({ activityId, onClose, onDelete }: Activi
               </div>
             )}
 
+            {/* Budget Tracker Integration - All Activities */}
+            <div className="bg-white rounded-lg shadow p-4">
+              <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
+                <svg className="w-5 h-5 mr-2 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Budget Tracker
+              </h3>
+              <div className="space-y-3">
+                {activity.budgetId ? (
+                  <>
+                    <p className="text-sm text-gray-600">
+                      This activity is linked to a budget in the Budget Tracker.
+                    </p>
+                    <div className="flex gap-2">
+                      <a
+                        href={`https://budget-tracker-three-kappa.vercel.app/activities/${activity.budgetId}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
+                      >
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        View Budget
+                      </a>
+                      {isEditing && (
+                        <button
+                          type="button"
+                          onClick={() => handleFieldChange('budgetId', undefined)}
+                          className="px-3 py-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                        >
+                          Unlink
+                        </button>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-sm text-gray-600">
+                      Track expenses and budget utilization for this activity.
+                    </p>
+                    <a
+                      href={`https://budget-tracker-three-kappa.vercel.app/activities/create?cdfa_activity_id=${activity.id}&name=${encodeURIComponent(activity.name)}&start_date=${activity.startDate}&end_date=${activity.endDate}&location=${encodeURIComponent(activity.location || '')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                      </svg>
+                      Create Budget
+                    </a>
+                    {isEditing && (
+                      <div className="mt-3 pt-3 border-t">
+                        <label className="block text-sm text-gray-600 mb-1">
+                          Or link existing budget (Activity ID)
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Enter activity ID from Budget Tracker"
+                          onChange={(e) => handleFieldChange('budgetId', e.target.value || undefined)}
+                          className="w-full border rounded px-3 py-2 text-sm"
+                        />
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            </div>
+
             {isEducationalActivity && (
               <div className="bg-white rounded-lg shadow p-4">
                 <h3 className="font-semibold text-gray-900 mb-3">Educational Details</h3>
