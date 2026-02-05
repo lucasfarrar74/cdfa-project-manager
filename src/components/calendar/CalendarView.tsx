@@ -61,10 +61,10 @@ export default function CalendarView() {
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold text-gray-900">{getTitle()}</h2>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{getTitle()}</h2>
           <button
             onClick={handleToday}
-            className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
+            className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 rounded-md transition-colors"
           >
             Today
           </button>
@@ -72,15 +72,15 @@ export default function CalendarView() {
 
         <div className="flex items-center gap-4">
           {/* View mode selector */}
-          <div className="flex bg-gray-100 rounded-lg p-1">
+          <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
             {(['month', 'quarter', 'year'] as ViewMode[]).map((mode) => (
               <button
                 key={mode}
                 onClick={() => setViewMode(mode)}
                 className={`px-3 py-1 text-sm rounded-md transition-colors capitalize ${
                   viewMode === mode
-                    ? 'bg-white shadow text-gray-900'
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'bg-white dark:bg-gray-600 shadow dark:shadow-gray-900/50 text-gray-900 dark:text-gray-100'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
                 }`}
               >
                 {mode}
@@ -92,7 +92,7 @@ export default function CalendarView() {
           <div className="flex items-center gap-1">
             <button
               onClick={handlePrevious}
-              className="p-2 hover:bg-gray-100 rounded-md transition-colors"
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors text-gray-900 dark:text-gray-100"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -100,7 +100,7 @@ export default function CalendarView() {
             </button>
             <button
               onClick={handleNext}
-              className="p-2 hover:bg-gray-100 rounded-md transition-colors"
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors text-gray-900 dark:text-gray-100"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -114,32 +114,32 @@ export default function CalendarView() {
       <div className="flex items-center gap-6 mb-4 text-sm flex-wrap">
         <div className="flex items-center gap-1.5">
           <span className="w-3 h-3 rounded bg-blue-500"></span>
-          <span className="text-gray-600">Trade</span>
+          <span className="text-gray-600 dark:text-gray-400">Trade</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="w-3 h-3 rounded bg-green-500"></span>
-          <span className="text-gray-600">Educational</span>
+          <span className="text-gray-600 dark:text-gray-400">Educational</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="w-3 h-3 rounded bg-amber-500"></span>
-          <span className="text-gray-600">Consultation</span>
+          <span className="text-gray-600 dark:text-gray-400">Consultation</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="w-3 h-3 rounded bg-emerald-600"></span>
-          <span className="text-gray-600">Completed</span>
+          <span className="text-gray-600 dark:text-gray-400">Completed</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="w-3 h-3 rounded bg-gray-300"></span>
-          <span className="text-gray-600">Draft</span>
+          <span className="w-3 h-3 rounded bg-gray-300 dark:bg-gray-600"></span>
+          <span className="text-gray-600 dark:text-gray-400">Draft</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="w-3 h-3 rounded bg-red-100 border border-red-200"></span>
-          <span className="text-gray-600">Holiday</span>
+          <span className="w-3 h-3 rounded bg-red-100 dark:bg-red-900/50 border border-red-200 dark:border-red-700"></span>
+          <span className="text-gray-600 dark:text-gray-400">Holiday</span>
         </div>
       </div>
 
       {/* Calendar content */}
-      <div className="flex-1 bg-white rounded-lg shadow overflow-hidden">
+      <div className="flex-1 bg-white dark:bg-gray-800 rounded-lg shadow dark:shadow-gray-900/50 overflow-hidden">
         {viewMode === 'month' && (
           <MonthView
             currentDate={currentDate}

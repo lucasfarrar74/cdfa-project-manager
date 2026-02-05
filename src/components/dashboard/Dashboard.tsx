@@ -184,17 +184,17 @@ export default function Dashboard() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'draft':
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300';
       case 'planning':
-        return 'bg-yellow-100 text-yellow-700';
+        return 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-700 dark:text-yellow-300';
       case 'in_progress':
-        return 'bg-blue-100 text-blue-700';
+        return 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300';
       case 'completed':
-        return 'bg-green-100 text-green-700';
+        return 'bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300';
       case 'cancelled':
-        return 'bg-red-100 text-red-700';
+        return 'bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300';
       default:
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300';
     }
   };
 
@@ -203,13 +203,13 @@ export default function Dashboard() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600">{currentFY} Overview</p>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Dashboard</h1>
+          <p className="text-gray-600 dark:text-gray-400">{currentFY} Overview</p>
         </div>
         <div className="flex gap-2">
           <button
             onClick={() => setShowDataPanel(!showDataPanel)}
-            className="px-3 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+            className="px-3 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center gap-2"
             title="Backup & Restore"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -238,70 +238,70 @@ export default function Dashboard() {
                   className="fixed inset-0 z-10"
                   onClick={() => setShowNewActivityMenu(false)}
                 />
-                <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border z-20 py-2">
+                <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-900/50 border dark:border-gray-700 z-20 py-2">
                   {/* Trade Section */}
-                  <div className="px-3 py-1.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  <div className="px-3 py-1.5 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     Trade
                   </div>
                   <button
                     onClick={() => handleCreateActivity('outbound_trade_mission')}
-                    className="w-full px-4 py-2 text-left text-sm hover:bg-blue-50 flex items-center gap-3"
+                    className="w-full px-4 py-2 text-left text-sm hover:bg-blue-50 dark:hover:bg-blue-900/50 flex items-center gap-3 dark:text-gray-100"
                   >
                     <span className="w-2 h-2 rounded-full bg-blue-500" />
                     Outbound Trade Mission
                   </button>
                   <button
                     onClick={() => handleCreateActivity('inbound_trade_mission')}
-                    className="w-full px-4 py-2 text-left text-sm hover:bg-blue-50 flex items-center gap-3"
+                    className="w-full px-4 py-2 text-left text-sm hover:bg-blue-50 dark:hover:bg-blue-900/50 flex items-center gap-3 dark:text-gray-100"
                   >
                     <span className="w-2 h-2 rounded-full bg-indigo-500" />
                     Inbound Trade Mission
                   </button>
                   <button
                     onClick={() => handleCreateActivity('trade_show')}
-                    className="w-full px-4 py-2 text-left text-sm hover:bg-blue-50 flex items-center gap-3"
+                    className="w-full px-4 py-2 text-left text-sm hover:bg-blue-50 dark:hover:bg-blue-900/50 flex items-center gap-3 dark:text-gray-100"
                   >
                     <span className="w-2 h-2 rounded-full bg-purple-500" />
                     Trade Show
                   </button>
 
-                  <div className="my-2 border-t" />
+                  <div className="my-2 border-t dark:border-gray-700" />
 
                   {/* Educational Section */}
-                  <div className="px-3 py-1.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  <div className="px-3 py-1.5 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     Educational
                   </div>
                   <button
                     onClick={() => handleCreateActivity('webinar')}
-                    className="w-full px-4 py-2 text-left text-sm hover:bg-green-50 flex items-center gap-3"
+                    className="w-full px-4 py-2 text-left text-sm hover:bg-green-50 dark:hover:bg-green-900/50 flex items-center gap-3 dark:text-gray-100"
                   >
                     <span className="w-2 h-2 rounded-full bg-green-500" />
                     Webinar
                   </button>
                   <button
                     onClick={() => handleCreateActivity('seminar')}
-                    className="w-full px-4 py-2 text-left text-sm hover:bg-green-50 flex items-center gap-3"
+                    className="w-full px-4 py-2 text-left text-sm hover:bg-green-50 dark:hover:bg-green-900/50 flex items-center gap-3 dark:text-gray-100"
                   >
                     <span className="w-2 h-2 rounded-full bg-teal-500" />
                     Seminar
                   </button>
                   <button
                     onClick={() => handleCreateActivity('seminar_series')}
-                    className="w-full px-4 py-2 text-left text-sm hover:bg-green-50 flex items-center gap-3"
+                    className="w-full px-4 py-2 text-left text-sm hover:bg-green-50 dark:hover:bg-green-900/50 flex items-center gap-3 dark:text-gray-100"
                   >
                     <span className="w-2 h-2 rounded-full bg-cyan-500" />
                     Seminar Series
                   </button>
 
-                  <div className="my-2 border-t" />
+                  <div className="my-2 border-t dark:border-gray-700" />
 
                   {/* Other Section */}
-                  <div className="px-3 py-1.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  <div className="px-3 py-1.5 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     Other
                   </div>
                   <button
                     onClick={() => handleCreateActivity('consultation')}
-                    className="w-full px-4 py-2 text-left text-sm hover:bg-amber-50 flex items-center gap-3"
+                    className="w-full px-4 py-2 text-left text-sm hover:bg-amber-50 dark:hover:bg-amber-900/50 flex items-center gap-3 dark:text-gray-100"
                   >
                     <span className="w-2 h-2 rounded-full bg-amber-500" />
                     Consultation
@@ -315,23 +315,23 @@ export default function Dashboard() {
 
       {/* Data Management Panel */}
       {showDataPanel && (
-        <div className="bg-white rounded-lg shadow p-4 border border-gray-200">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow dark:shadow-gray-900/50 p-4 border border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="font-semibold text-gray-900">Backup & Restore</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-gray-100">Backup & Restore</h3>
             <button
               onClick={() => setShowDataPanel(false)}
-              className="text-gray-400 hover:text-gray-600"
+              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
-          <p className="text-sm text-gray-600 mb-4">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
             Export your activities to a JSON file for backup, or import from a previous backup.
           </p>
           {importError && (
-            <div className="mb-3 p-2 bg-red-50 border border-red-200 rounded text-sm text-red-600">
+            <div className="mb-3 p-2 bg-red-50 dark:bg-red-900/50 border border-red-200 dark:border-red-700 rounded text-sm text-red-600 dark:text-red-400">
               {importError}
             </div>
           )}
@@ -348,7 +348,7 @@ export default function Dashboard() {
             </button>
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
+              className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center justify-center gap-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
@@ -363,7 +363,7 @@ export default function Dashboard() {
               className="hidden"
             />
           </div>
-          <p className="text-xs text-gray-500 mt-3">
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-3">
             {activities.length} activities stored • Last export creates a timestamped backup file
           </p>
         </div>
@@ -371,17 +371,17 @@ export default function Dashboard() {
 
       {/* Stats cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow dark:shadow-gray-900/50 p-6">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-gray-900">Trade</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Trade</h3>
             <span className="w-3 h-3 rounded-full bg-blue-500"></span>
           </div>
           <div className="mt-4">
-            <div className="text-3xl font-bold text-gray-900">{fyStats.trade.total}</div>
-            <div className="text-sm text-gray-500 mt-1">
+            <div className="text-3xl font-bold text-gray-900 dark:text-gray-100">{fyStats.trade.total}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               {fyStats.trade.completed} completed, {fyStats.trade.inProgress} active
             </div>
-            <div className="mt-3 bg-gray-200 rounded-full h-2">
+            <div className="mt-3 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
               <div
                 className="bg-blue-500 h-2 rounded-full transition-all"
                 style={{
@@ -392,17 +392,17 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow dark:shadow-gray-900/50 p-6">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-gray-900">Educational</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Educational</h3>
             <span className="w-3 h-3 rounded-full bg-green-500"></span>
           </div>
           <div className="mt-4">
-            <div className="text-3xl font-bold text-gray-900">{fyStats.educational.total}</div>
-            <div className="text-sm text-gray-500 mt-1">
+            <div className="text-3xl font-bold text-gray-900 dark:text-gray-100">{fyStats.educational.total}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               {fyStats.educational.completed} completed, {fyStats.educational.inProgress} active
             </div>
-            <div className="mt-3 bg-gray-200 rounded-full h-2">
+            <div className="mt-3 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
               <div
                 className="bg-green-500 h-2 rounded-full transition-all"
                 style={{
@@ -417,17 +417,17 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow dark:shadow-gray-900/50 p-6">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-gray-900">Consultations</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Consultations</h3>
             <span className="w-3 h-3 rounded-full bg-amber-500"></span>
           </div>
           <div className="mt-4">
-            <div className="text-3xl font-bold text-gray-900">{fyStats.consultation.total}</div>
-            <div className="text-sm text-gray-500 mt-1">
+            <div className="text-3xl font-bold text-gray-900 dark:text-gray-100">{fyStats.consultation.total}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               {fyStats.consultation.completed} completed, {fyStats.consultation.inProgress} active
             </div>
-            <div className="mt-3 bg-gray-200 rounded-full h-2">
+            <div className="mt-3 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
               <div
                 className="bg-amber-500 h-2 rounded-full transition-all"
                 style={{
@@ -442,20 +442,20 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow dark:shadow-gray-900/50 p-6">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-gray-900">Tasks</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Tasks</h3>
             <span
               className={`px-2 py-1 rounded text-xs font-medium ${
-                overdueTasks.length > 0 ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
+                overdueTasks.length > 0 ? 'bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300' : 'bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300'
               }`}
             >
               {overdueTasks.length > 0 ? `${overdueTasks.length} overdue` : 'All caught up'}
             </span>
           </div>
           <div className="mt-4">
-            <div className="text-3xl font-bold text-gray-900">{dueSoonTasks.length}</div>
-            <div className="text-sm text-gray-500 mt-1">due in the next 7 days</div>
+            <div className="text-3xl font-bold text-gray-900 dark:text-gray-100">{dueSoonTasks.length}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">due in the next 7 days</div>
           </div>
         </div>
       </div>
@@ -463,13 +463,13 @@ export default function Dashboard() {
       {/* Main content grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Upcoming activities */}
-        <div className="bg-white rounded-lg shadow">
-          <div className="px-6 py-4 border-b">
-            <h3 className="text-lg font-semibold text-gray-900">Upcoming Activities</h3>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow dark:shadow-gray-900/50">
+          <div className="px-6 py-4 border-b dark:border-gray-700">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Upcoming Activities</h3>
           </div>
-          <div className="divide-y">
+          <div className="divide-y dark:divide-gray-700">
             {upcomingActivities.length === 0 ? (
-              <div className="px-6 py-8 text-center text-gray-500">
+              <div className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
                 <p>No upcoming activities in the next 30 days</p>
                 {activities.length === 0 && (
                   <button
@@ -484,7 +484,7 @@ export default function Dashboard() {
               upcomingActivities.map((activity) => (
                 <div
                   key={activity.id}
-                  className="px-6 py-4 hover:bg-gray-50 cursor-pointer transition-colors"
+                  className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer transition-colors"
                   onClick={() => selectActivity(activity.id)}
                 >
                   <div className="flex items-start justify-between">
@@ -493,8 +493,8 @@ export default function Dashboard() {
                         className={`w-2 h-2 rounded-full mt-2 ${getActivityTypeColor(activity.activityType)}`}
                       />
                       <div>
-                        <div className="font-medium text-gray-900">{activity.name}</div>
-                        <div className="text-sm text-gray-500 mt-0.5">
+                        <div className="font-medium text-gray-900 dark:text-gray-100">{activity.name}</div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
                           {getActivityTypeInfo(activity.activityType).shortName} • {format(parseISO(activity.startDate), 'MMM d, yyyy')}
                           {activity.location && ` • ${activity.location}`}
                         </div>
@@ -511,13 +511,13 @@ export default function Dashboard() {
         </div>
 
         {/* Overdue & due soon tasks */}
-        <div className="bg-white rounded-lg shadow">
-          <div className="px-6 py-4 border-b">
-            <h3 className="text-lg font-semibold text-gray-900">Task Reminders</h3>
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow dark:shadow-gray-900/50">
+          <div className="px-6 py-4 border-b dark:border-gray-700">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Task Reminders</h3>
           </div>
-          <div className="divide-y max-h-96 overflow-auto">
+          <div className="divide-y dark:divide-gray-700 max-h-96 overflow-auto">
             {overdueTasks.length === 0 && dueSoonTasks.length === 0 ? (
-              <div className="px-6 py-8 text-center text-gray-500">
+              <div className="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
                 No pending tasks
               </div>
             ) : (
@@ -525,15 +525,15 @@ export default function Dashboard() {
                 {overdueTasks.map(({ item, activity }) => (
                   <div
                     key={item.id}
-                    className="px-6 py-4 hover:bg-gray-50 cursor-pointer transition-colors bg-red-50"
+                    className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer transition-colors bg-red-50 dark:bg-red-900/30"
                     onClick={() => selectActivity(activity.id)}
                   >
                     <div className="flex items-start gap-3">
                       <span className="w-2 h-2 rounded-full mt-2 bg-red-500" />
                       <div className="flex-1 min-w-0">
-                        <div className="font-medium text-gray-900 truncate">{item.title}</div>
-                        <div className="text-sm text-gray-500 truncate">{activity.name}</div>
-                        <div className="text-xs text-red-600 mt-1">
+                        <div className="font-medium text-gray-900 dark:text-gray-100 truncate">{item.title}</div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400 truncate">{activity.name}</div>
+                        <div className="text-xs text-red-600 dark:text-red-400 mt-1">
                           Overdue: was due {format(parseISO(item.dueDate), 'MMM d')}
                         </div>
                       </div>
@@ -543,15 +543,15 @@ export default function Dashboard() {
                 {dueSoonTasks.map(({ item, activity }) => (
                   <div
                     key={item.id}
-                    className="px-6 py-4 hover:bg-gray-50 cursor-pointer transition-colors"
+                    className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer transition-colors"
                     onClick={() => selectActivity(activity.id)}
                   >
                     <div className="flex items-start gap-3">
                       <span className="w-2 h-2 rounded-full mt-2 bg-yellow-500" />
                       <div className="flex-1 min-w-0">
-                        <div className="font-medium text-gray-900 truncate">{item.title}</div>
-                        <div className="text-sm text-gray-500 truncate">{activity.name}</div>
-                        <div className="text-xs text-yellow-600 mt-1">
+                        <div className="font-medium text-gray-900 dark:text-gray-100 truncate">{item.title}</div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400 truncate">{activity.name}</div>
+                        <div className="text-xs text-yellow-600 dark:text-yellow-400 mt-1">
                           Due: {format(parseISO(item.dueDate), 'MMM d')}
                         </div>
                       </div>

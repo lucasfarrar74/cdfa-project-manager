@@ -152,11 +152,11 @@ export default function MonthView({
   return (
     <div className="h-full flex flex-col">
       {/* Header row */}
-      <div className="grid grid-cols-7 border-b bg-gray-50">
+      <div className="grid grid-cols-7 border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
           <div
             key={day}
-            className={`text-center font-medium text-gray-700 ${
+            className={`text-center font-medium text-gray-700 dark:text-gray-300 ${
               compact ? 'py-1 text-xs' : 'py-2 text-sm'
             }`}
           >
@@ -183,8 +183,8 @@ export default function MonthView({
                   return (
                     <div
                       key={dayIdx}
-                      className={`border-b border-r overflow-hidden cursor-pointer hover:bg-gray-50/50 transition-colors ${
-                        !isCurrentMonth ? 'bg-gray-50/50' : holiday ? 'bg-red-50' : 'bg-white'
+                      className={`border-b border-r dark:border-gray-700 overflow-hidden cursor-pointer hover:bg-gray-50/50 dark:hover:bg-gray-700/50 transition-colors ${
+                        !isCurrentMonth ? 'bg-gray-50/50 dark:bg-gray-800/50' : holiday ? 'bg-red-50 dark:bg-red-900/30' : 'bg-white dark:bg-gray-900'
                       }`}
                       onClick={() => onDateClick(date)}
                       title={holiday?.name}
@@ -195,10 +195,10 @@ export default function MonthView({
                             isTodayDate
                               ? 'bg-blue-600 text-white rounded-full w-6 h-6 font-semibold'
                               : holiday
-                              ? 'text-red-600 font-medium'
+                              ? 'text-red-600 dark:text-red-400 font-medium'
                               : isCurrentMonth
-                              ? 'text-gray-900'
-                              : 'text-gray-400'
+                              ? 'text-gray-900 dark:text-gray-100'
+                              : 'text-gray-400 dark:text-gray-500'
                           }`}
                         >
                           {format(date, 'd')}
@@ -267,7 +267,7 @@ export default function MonthView({
 
                   {/* Show "+N more" if there are hidden events */}
                   {weekPositions.filter(p => p.row >= 3).length > 0 && (
-                    <div className="absolute bottom-1 right-2 text-xs text-gray-500 pointer-events-auto">
+                    <div className="absolute bottom-1 right-2 text-xs text-gray-500 dark:text-gray-400 pointer-events-auto">
                       +{weekPositions.filter(p => p.row >= 3).length} more
                     </div>
                   )}

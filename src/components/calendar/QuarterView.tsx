@@ -184,16 +184,16 @@ function QuarterMonthView({
   return (
     <div className="flex flex-col h-full">
       <h3
-        className="text-lg font-semibold mb-2 text-gray-800 cursor-pointer hover:text-blue-600"
+        className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-200 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400"
         onClick={() => onMonthClick(monthDate)}
       >
         {format(monthDate, 'MMMM')}
       </h3>
-      <div className="flex-1 border rounded-lg overflow-hidden bg-white">
+      <div className="flex-1 border dark:border-gray-700 rounded-lg overflow-hidden bg-white dark:bg-gray-800">
         {/* Day headers */}
-        <div className="grid grid-cols-7 border-b bg-gray-50">
+        <div className="grid grid-cols-7 border-b dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
           {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, i) => (
-            <div key={i} className="text-center text-xs font-medium text-gray-600 py-1">
+            <div key={i} className="text-center text-xs font-medium text-gray-600 dark:text-gray-300 py-1">
               {day}
             </div>
           ))}
@@ -217,8 +217,8 @@ function QuarterMonthView({
                     return (
                       <div
                         key={dayIdx}
-                        className={`border-b border-r text-center relative ${
-                          !isCurrentMonth ? 'bg-gray-50' : holiday ? 'bg-red-50' : 'bg-white'
+                        className={`border-b border-r dark:border-gray-700 text-center relative ${
+                          !isCurrentMonth ? 'bg-gray-50 dark:bg-gray-800' : holiday ? 'bg-red-50 dark:bg-red-900/30' : 'bg-white dark:bg-gray-900'
                         }`}
                         title={holiday?.name}
                       >
@@ -227,10 +227,10 @@ function QuarterMonthView({
                             isTodayDate
                               ? 'bg-blue-600 text-white rounded-full w-5 h-5 leading-5'
                               : holiday
-                              ? 'text-red-600 font-medium'
+                              ? 'text-red-600 dark:text-red-400 font-medium'
                               : isCurrentMonth
-                              ? 'text-gray-700'
-                              : 'text-gray-400'
+                              ? 'text-gray-700 dark:text-gray-300'
+                              : 'text-gray-400 dark:text-gray-500'
                           }`}
                         >
                           {format(date, 'd')}

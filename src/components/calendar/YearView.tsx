@@ -200,18 +200,18 @@ function YearMonthView({
 
   return (
     <div
-      className="border rounded-lg overflow-hidden cursor-pointer hover:shadow-md transition-shadow flex flex-col"
+      className="border dark:border-gray-700 rounded-lg overflow-hidden cursor-pointer hover:shadow-md dark:hover:shadow-gray-900/50 transition-shadow flex flex-col bg-white dark:bg-gray-800"
       onClick={() => onMonthClick(monthDate)}
     >
       {/* Month header */}
-      <div className="bg-gray-100 px-2 py-1 font-semibold text-sm text-gray-800">
+      <div className="bg-gray-100 dark:bg-gray-700 px-2 py-1 font-semibold text-sm text-gray-800 dark:text-gray-200">
         {format(monthDate, 'MMMM')}
       </div>
 
       {/* Mini calendar with bars */}
-      <div className="flex-1 p-1">
+      <div className="flex-1 p-1 bg-white dark:bg-gray-800">
         {/* Day headers */}
-        <div className="grid grid-cols-7 text-center text-[9px] text-gray-500 mb-0.5">
+        <div className="grid grid-cols-7 text-center text-[9px] text-gray-500 dark:text-gray-400 mb-0.5">
           {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
             <div key={i}>{d}</div>
           ))}
@@ -236,7 +236,7 @@ function YearMonthView({
                       <div
                         key={dayIdx}
                         className={`text-center relative ${
-                          !isCurrentMonth ? 'bg-gray-50' : holiday ? 'bg-red-50' : 'bg-white'
+                          !isCurrentMonth ? 'bg-gray-50 dark:bg-gray-800' : holiday ? 'bg-red-50 dark:bg-red-900/30' : 'bg-white dark:bg-gray-800'
                         }`}
                         title={holiday?.name}
                       >
@@ -245,10 +245,10 @@ function YearMonthView({
                             isTodayDate
                               ? 'bg-blue-600 text-white rounded-full w-3 h-3 leading-3'
                               : holiday
-                              ? 'text-red-600 font-medium'
+                              ? 'text-red-600 dark:text-red-400 font-medium'
                               : isCurrentMonth
-                              ? 'text-gray-700'
-                              : 'text-gray-300'
+                              ? 'text-gray-700 dark:text-gray-300'
+                              : 'text-gray-300 dark:text-gray-600'
                           }`}
                         >
                           {format(date, 'd')}
@@ -305,7 +305,7 @@ function YearMonthView({
       </div>
 
       {/* Activity summary */}
-      <div className="px-2 py-1 border-t bg-gray-50 text-xs text-gray-600">
+      <div className="px-2 py-1 border-t dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-xs text-gray-600 dark:text-gray-300">
         {activitySummary.total === 0 ? (
           'No activities'
         ) : (

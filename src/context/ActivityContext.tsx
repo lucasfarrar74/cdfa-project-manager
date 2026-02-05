@@ -23,6 +23,7 @@ import {
   updateChecklistCounts,
   generateReminders,
 } from '../utils/reminderScheduler';
+import { useAuth } from './AuthContext';
 
 // State type
 interface ActivityState {
@@ -266,6 +267,14 @@ const STORAGE_KEY = 'cdfa-project-manager-data';
 // Provider component
 export function ActivityProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(activityReducer, initialState);
+  const { user } = useAuth();
+
+  // Sync Firebase UID from Hub auth
+  useEffect(() => {
+    if (user?.uid && user.uid !== state.currentUserId) {
+      dispatch({ type: 'SET_CURRENT_USER', payload: user.uid });
+    }
+  }, [user?.uid, state.currentUserId]);
 
   // Load from local storage on mount
   useEffect(() => {

@@ -22,7 +22,7 @@ export default function ChecklistPanel({ activityId }: ChecklistPanelProps) {
 
   if (!checklist || !template || !phaseData) {
     return (
-      <div className="p-6 text-center text-gray-500">
+      <div className="p-6 text-center text-gray-500 dark:text-gray-400">
         <p>No checklist available for this activity.</p>
         <p className="text-sm mt-2">Set a start date to generate the checklist.</p>
       </div>
@@ -88,11 +88,11 @@ export default function ChecklistPanel({ activityId }: ChecklistPanelProps) {
   const getPhaseStatusBadge = (status: 'not_started' | 'in_progress' | 'completed') => {
     switch (status) {
       case 'completed':
-        return <span className="px-2 py-0.5 bg-green-100 text-green-700 text-xs rounded-full">Complete</span>;
+        return <span className="px-2 py-0.5 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 text-xs rounded-full">Complete</span>;
       case 'in_progress':
-        return <span className="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded-full">In Progress</span>;
+        return <span className="px-2 py-0.5 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs rounded-full">In Progress</span>;
       default:
-        return <span className="px-2 py-0.5 bg-gray-100 text-gray-600 text-xs rounded-full">Not Started</span>;
+        return <span className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded-full">Not Started</span>;
     }
   };
 
@@ -101,21 +101,21 @@ export default function ChecklistPanel({ activityId }: ChecklistPanelProps) {
   return (
     <div className="space-y-6">
       {/* Progress overview */}
-      <div className="bg-white rounded-lg shadow p-4">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow dark:shadow-gray-900/50 p-4">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-gray-700">Overall Progress</span>
-          <span className="text-sm text-gray-600">
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Overall Progress</span>
+          <span className="text-sm text-gray-600 dark:text-gray-400">
             {checklist.completedCount} / {checklist.totalCount} tasks
           </span>
         </div>
-        <div className="bg-gray-200 rounded-full h-3">
+        <div className="bg-gray-200 dark:bg-gray-700 rounded-full h-3">
           <div
             className="bg-blue-500 h-3 rounded-full transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
         {checklist.overdueCount > 0 && (
-          <div className="mt-2 text-sm text-red-600">
+          <div className="mt-2 text-sm text-red-600 dark:text-red-400">
             {checklist.overdueCount} task{checklist.overdueCount !== 1 ? 's' : ''} overdue
           </div>
         )}
@@ -126,27 +126,27 @@ export default function ChecklistPanel({ activityId }: ChecklistPanelProps) {
         const phaseStatus = getPhaseStatus(items);
 
         return (
-          <div key={phaseId} className="bg-white rounded-lg shadow overflow-hidden">
+          <div key={phaseId} className="bg-white dark:bg-gray-800 rounded-lg shadow dark:shadow-gray-900/50 overflow-hidden">
             {/* Phase header */}
-            <div className="px-4 py-3 bg-gray-50 border-b flex items-center justify-between">
+            <div className="px-4 py-3 bg-gray-50 dark:bg-gray-700 border-b dark:border-gray-600 flex items-center justify-between">
               <div>
-                <h4 className="font-semibold text-gray-900">{phase.name}</h4>
-                <p className="text-sm text-gray-500">{phase.description}</p>
+                <h4 className="font-semibold text-gray-900 dark:text-gray-100">{phase.name}</h4>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{phase.description}</p>
               </div>
               {getPhaseStatusBadge(phaseStatus)}
             </div>
 
             {/* Tasks */}
-            <div className="divide-y">
+            <div className="divide-y dark:divide-gray-700">
               {items.map((item) => {
                 const dueDateInfo = formatDueDateWithStatus(item.dueDate);
 
                 return (
                   <div
                     key={item.id}
-                    className={`px-4 py-3 flex items-start gap-3 hover:bg-gray-50 transition-colors ${
+                    className={`px-4 py-3 flex items-start gap-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
                       dueDateInfo.status === 'overdue' && item.status !== 'completed' && item.status !== 'skipped'
-                        ? 'bg-red-50'
+                        ? 'bg-red-50 dark:bg-red-900/30'
                         : ''
                     }`}
                   >
@@ -174,8 +174,8 @@ export default function ChecklistPanel({ activityId }: ChecklistPanelProps) {
                         <div
                           className={`font-medium ${
                             item.status === 'completed' || item.status === 'skipped'
-                              ? 'text-gray-400 line-through'
-                              : 'text-gray-900'
+                              ? 'text-gray-400 dark:text-gray-500 line-through'
+                              : 'text-gray-900 dark:text-gray-100'
                           }`}
                         >
                           {item.title}
@@ -186,22 +186,22 @@ export default function ChecklistPanel({ activityId }: ChecklistPanelProps) {
                         <span
                           className={`text-xs px-2 py-0.5 rounded flex-shrink-0 ${
                             dueDateInfo.status === 'overdue'
-                              ? 'bg-red-100 text-red-700'
+                              ? 'bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300'
                               : dueDateInfo.status === 'today'
-                              ? 'bg-yellow-100 text-yellow-700'
+                              ? 'bg-yellow-100 dark:bg-yellow-900/50 text-yellow-700 dark:text-yellow-300'
                               : dueDateInfo.status === 'upcoming'
-                              ? 'bg-blue-100 text-blue-700'
-                              : 'bg-gray-100 text-gray-600'
+                              ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
+                              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
                           }`}
                         >
                           {dueDateInfo.text}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-500 mt-1">{item.description}</p>
-                      <div className="flex items-center gap-3 mt-2 text-xs text-gray-400">
-                        <span className="px-1.5 py-0.5 bg-gray-100 rounded">{item.category}</span>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{item.description}</p>
+                      <div className="flex items-center gap-3 mt-2 text-xs text-gray-400 dark:text-gray-500">
+                        <span className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-700 rounded">{item.category}</span>
                         {item.requiresApproval && (
-                          <span className="px-1.5 py-0.5 bg-purple-100 text-purple-700 rounded">
+                          <span className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 rounded">
                             Requires approval
                           </span>
                         )}
@@ -216,7 +216,7 @@ export default function ChecklistPanel({ activityId }: ChecklistPanelProps) {
                       <select
                         value={item.status}
                         onChange={(e) => handleStatusChange(item.id, e.target.value as ChecklistItemStatus)}
-                        className="text-xs border rounded px-2 py-1 bg-white"
+                        className="text-xs border dark:border-gray-600 rounded px-2 py-1 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                       >
                         <option value="not_started">Not Started</option>
                         <option value="in_progress">In Progress</option>
