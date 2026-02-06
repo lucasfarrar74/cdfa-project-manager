@@ -94,6 +94,11 @@ export function initializeActivityBridge(
 
   window.addEventListener('message', handleMessage);
 
+  // Send ready signal to parent window
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: 'CDFA_ACTIVITY_BRIDGE_READY' }, '*');
+  }
+
   return () => {
     window.removeEventListener('message', handleMessage);
   };
