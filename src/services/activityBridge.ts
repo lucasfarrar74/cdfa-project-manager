@@ -36,10 +36,14 @@ export function initializeActivityBridge(
   const handleMessage = (event: MessageEvent) => {
     const data = event.data;
 
+    console.log('[ActivityBridge] Received message:', data?.type, data?.action);
+
     // Validate message structure
     if (data?.type !== 'CDFA_ACTIVITY' || data?.action !== 'CREATE_ACTIVITY') {
       return;
     }
+
+    console.log('[ActivityBridge] Processing CREATE_ACTIVITY:', data.payload);
 
     const message = data as CreateActivityMessage;
     const { id, name, fiscalYear, startDate, endDate, location } = message.payload;
@@ -95,7 +99,9 @@ export function initializeActivityBridge(
   window.addEventListener('message', handleMessage);
 
   // Send ready signal to parent window
+  console.log('[ActivityBridge] Checking if in iframe:', window.parent !== window);
   if (window.parent && window.parent !== window) {
+    console.log('[ActivityBridge] Sending READY signal to parent');
     window.parent.postMessage({ type: 'CDFA_ACTIVITY_BRIDGE_READY' }, '*');
   }
 
