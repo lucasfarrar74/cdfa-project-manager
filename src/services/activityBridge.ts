@@ -1,6 +1,7 @@
 /**
  * Activity Bridge for CDFA Hub integration
  * Handles activity creation/sync from Activity Links page
+ * Version: 2.0
  */
 
 import type { Activity, ActivityStatus } from '../types';
